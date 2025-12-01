@@ -667,6 +667,45 @@
       background: rgba(3, 7, 18, 0.94);
     }
 
+    /* ACTOR LIST STYLING (glowing bullets + clickable names) */
+    .actor-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.55rem;
+    }
+
+    .actor-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .actor-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
+      box-shadow: 0 0 8px rgba(255, 153, 102, 0.8),
+                  0 0 14px rgba(255, 207, 153, 0.6);
+    }
+
+    .actor-list a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .actor-list a:hover {
+      color: #ffffff;
+    }
+
     @media (max-width: 900px) {
       .hero-inner {
         grid-template-columns: 1fr;
@@ -827,7 +866,9 @@
           <!-- Sling Blade -->
           <article class="card">
             <p class="badge">Drama</p>
-            <img class="poster-img" src="images/sling- blade.png" alt="Poster for Sling Blade" />
+            <a href="https://www.imdb.com/title/tt0117666/" target="_blank">
+              <img class="poster-img" src="images/sling- blade.png" alt="Poster for Sling Blade" />
+            </a>
             <h3>Sling Blade (1996)</h3>
             <p class="muted">
               Written, directed, and headlined by Billy Bob Thornton, this film follows Karl Childers after
@@ -846,7 +887,9 @@
           <!-- Mud -->
           <article class="card">
             <p class="badge">Drama</p>
-            <img class="poster-img" src="images/mud.png" alt="Poster for Mud" />
+            <a href="https://www.imdb.com/title/tt1935179/" target="_blank">
+              <img class="poster-img" src="images/mud.png" alt="Poster for Mud" />
+            </a>
             <h3>Mud (2012)</h3>
             <p class="muted">
               Two boys growing up along the Mississippi River discover a fugitive named Mud hiding on a river island.
@@ -865,7 +908,9 @@
           <!-- Chasing Amy -->
           <article class="card">
             <p class="badge">Romantic Comedy / Drama</p>
-            <img class="poster-img" src="images/chasing-amy.png" alt="Poster for Chasing Amy" />
+            <a href="https://www.imdb.com/title/tt0118842/" target="_blank">
+              <img class="poster-img" src="images/chasing-amy.png" alt="Poster for Chasing Amy" />
+            </a>
             <h3>Chasing Amy (1997)</h3>
             <p class="muted">
               A story about relationships, friendship, and identity in the comic book industry. Joey Lauren Adams
@@ -884,7 +929,9 @@
           <!-- Melvin and Howard -->
           <article class="card">
             <p class="badge">Drama / Comedy</p>
-            <img class="poster-img" src="images/melvin-and howard.png" alt="Poster for Melvin and Howard" />
+            <a href="https://www.imdb.com/title/tt0081178/" target="_blank">
+              <img class="poster-img" src="images/melvin-and howard.png" alt="Poster for Melvin and Howard" />
+            </a>
             <h3>Melvin and Howard (1980)</h3>
             <p class="muted">
               Based loosely on a true story involving an unexpected connection to billionaire Howard Hughes, this film
@@ -903,7 +950,9 @@
           <!-- Buck Rogers -->
           <article class="card">
             <p class="badge">Science Fiction TV</p>
-            <img class="poster-img" src="images/buck-rogers.png" alt="Poster for Buck Rogers in the 25th Century" />
+            <a href="https://www.imdb.com/title/tt0078579/" target="_blank">
+              <img class="poster-img" src="images/buck-rogers.png" alt="Poster for Buck Rogers in the 25th Century" />
+            </a>
             <h3>Buck Rogers in the 25th Century (1979–1981)</h3>
             <p class="muted">
               A science fiction television series that followed the adventures of Buck Rogers after he wakes
@@ -922,7 +971,9 @@
           <!-- The Firm -->
           <article class="card">
             <p class="badge">Legal Thriller</p>
-            <img class="poster-img" src="images/the-firm.png" alt="Poster for The Firm" />
+            <a href="https://www.imdb.com/title/tt0106918/" target="_blank">
+              <img class="poster-img" src="images/the-firm.png" alt="Poster for The Firm" />
+            </a>
             <h3>The Firm (1993)</h3>
             <p class="muted">
               A legal thriller based on the John Grisham novel, following a young lawyer who discovers that his new
@@ -941,7 +992,9 @@
           <!-- Walk the Line -->
           <article class="card">
             <p class="badge">Biographical Drama</p>
-            <img class="poster-img" src="images/walk -the -line.png" alt="Poster for Walk the Line" />
+            <a href="https://www.imdb.com/title/tt0358273/" target="_blank">
+              <img class="poster-img" src="images/walk -the -line.png" alt="Poster for Walk the Line" />
+            </a>
             <h3>Walk the Line (2005)</h3>
             <p class="muted">
               A biopic about the life of musician Johnny Cash, focusing on his early years, rise to fame, and
@@ -960,7 +1013,9 @@
           <!-- True Grit -->
           <article class="card">
             <p class="badge">Western</p>
-            <img class="poster-img" src="images/true-grit.png" alt="Poster for True Grit" />
+            <a href="https://www.imdb.com/title/tt1403865/" target="_blank">
+              <img class="poster-img" src="images/true-grit.png" alt="Poster for True Grit" />
+            </a>
             <h3>True Grit (2010)</h3>
             <p class="muted">
               A reimagining of the classic western about a young girl seeking justice for her father’s death with the
@@ -991,15 +1046,67 @@
               Mapping these people helped me see how often Arkansas shows up on screen, even when the
               story is set somewhere else.
             </p>
-            <ul class="muted">
-              <li><strong>Billy Bob Thornton</strong> – Arkansas native; wrote, directed, and starred in <em>Sling Blade</em>.</li>
-              <li><strong>Wes Bentley</strong> – Born in Arkansas; appears in <em>Mud</em> and other major films.</li>
-              <li><strong>Joey Lauren Adams</strong> – Arkansas native; praised for her leading role in <em>Chasing Amy</em>.</li>
-              <li><strong>Mary Steenburgen</strong> – From Arkansas; won an Academy Award for <em>Melvin and Howard</em>.</li>
-              <li><strong>Gil Gerard</strong> – Sci-fi actor from Little Rock; starred in <em>Buck Rogers in the 25th Century</em>.</li>
-              <li><strong>Johnny Cash</strong> – Born in Kingsland, Arkansas; his life story is central to <em>Walk the Line</em>.</li>
-              <li><strong>Matthew McConaughey</strong> – Starred in <em>Mud</em>; while not from Arkansas, his performance is tied to one of the most well-known
-              <li><strong>Reese Witherspoon</strong> – Starred alongside Joaquin Phoenix in <em>Walk the Line</em>; the film highlights Johnny Cash’s Arkansas roots.</li>
+            <ul class="muted actor-list">
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Billy_Bob_Thornton" target="_blank">
+                  <strong>Billy Bob Thornton</strong> – Arkansas native; wrote, directed, and starred in <em>Sling Blade</em>.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Wes_Bentley" target="_blank">
+                  <strong>Wes Bentley</strong> – Born in Arkansas; appears in <em>Mud</em> and other major films.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Joey_Lauren_Adams" target="_blank">
+                  <strong>Joey Lauren Adams</strong> – Arkansas native; praised for her leading role in <em>Chasing Amy</em>.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Mary_Steenburgen" target="_blank">
+                  <strong>Mary Steenburgen</strong> – From Arkansas; won an Academy Award for <em>Melvin and Howard</em>.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Gil_Gerard" target="_blank">
+                  <strong>Gil Gerard</strong> – Sci-fi actor from Little Rock; starred in <em>Buck Rogers in the 25th Century</em>.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Johnny_Cash" target="_blank">
+                  <strong>Johnny Cash</strong> – Born in Kingsland, Arkansas; his life story is central to <em>Walk the Line</em>.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Matthew_McConaughey" target="_blank">
+                  <strong>Matthew McConaughey</strong> – Lead actor in <em>Mud</em>, one of the most recognized Arkansas-filmed projects.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Reese_Witherspoon" target="_blank">
+                  <strong>Reese Witherspoon</strong> – Starred in <em>Walk the Line</em>, portraying June Carter alongside Johnny Cash’s Arkansas story.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Joaquin_Phoenix" target="_blank">
+                  <strong>Joaquin Phoenix</strong> – Played Johnny Cash in <em>Walk the Line</em>, bringing Arkansas music history to the screen.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Jeff_Bridges" target="_blank">
+                  <strong>Jeff Bridges</strong> – Starred in the 2010 version of <em>True Grit</em>, tied to frontier culture connected to Arkansas history.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Hailee_Steinfeld" target="_blank">
+                  <strong>Hailee Steinfeld</strong> – Had her breakout role in <em>True Grit</em>; the story connects to regional frontier themes.
+                </a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Tom_Cruise" target="_blank">
+                  <strong>Tom Cruise</strong> – Leading role in <em>The Firm</em>, which featured scenes shot on Arkansas riverfront locations.
+                </a>
+              </li>
             </ul>
           </div>
           <aside class="note-box">

@@ -83,15 +83,13 @@ Content for this site was created using publicly available information from:
 - **IMDb (Internet Movie Database)** – for film years, genres, cast, and plot summaries  
 - **Wikipedia** – for actor biographies and background details
 
-I did not copy full text — I read the sources and then rewrote the descriptions in my own words.
+I did not copy full text — I read the sources and then rewrote the descriptions in my own words and research.
 
 ## How to View the Project
 
 If this repository is published with GitHub Pages, the site can be viewed in a browser using the GitHub Pages URL for this repo.
 
-Example (pattern):
-
-- `https://<your-username>.github.io/<your-repo-name>/`
+- https://sburkes84.github.io/arkansas-film-connections/
 
 You can also open the `index.html` file directly in a browser to preview it locally.
 

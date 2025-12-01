@@ -5,19 +5,21 @@
   <title>Arkansas Film Connections – Shequila Sledge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Favicon made from the poster (optional, but nice) -->
+  <link rel="icon" type="image/png" href="images/arkansas-film-icon.png">
+
   <style>
     :root {
       --bg-deep: #02030b;
-      --bg-soft: #111321;
+      --bg-soft: #101525;
       --accent-gold: #ffcf99;
       --accent-amber: #ff9966;
       --accent-pink: #ff6fb5;
-      --accent-cyan: #79d5ff;
       --text-main: #f4f7fb;
       --text-muted: #c1cfdd;
-      --card-bg: rgba(5, 10, 25, 0.96);
-      --border-soft: rgba(255, 255, 255, 0.12);
-      --shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.9);
+      --card-bg: rgba(8, 14, 30, 0.9);
+      --border-soft: rgba(255, 255, 255, 0.1);
+      --shadow-strong: 0 22px 60px rgba(0, 0, 0, 0.85);
     }
 
     *,
@@ -32,12 +34,14 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       color: var(--text-main);
       line-height: 1.6;
       background:
-        radial-gradient(circle at top left, #1e2950 0, transparent 55%),
+        radial-gradient(circle at top left, #1a2c4e 0, transparent 55%),
         radial-gradient(circle at bottom right, #3d1036 0, transparent 55%),
+        radial-gradient(circle at top right, #162b3c 0, transparent 50%),
         var(--bg-deep);
       min-height: 100vh;
       overflow-x: hidden;
@@ -47,150 +51,99 @@
       color: var(--accent-gold);
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
 
-    /* floating stars + moving beams */
-    .bg-stars,
-    .bg-stars::before,
-    .bg-stars::after {
-      position: fixed;
-      inset: -50px;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.45), transparent),
-        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.5), transparent);
-      opacity: 0.28;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: -3;
-      animation: starDrift 32s linear infinite;
-    }
-
-    .bg-stars::before {
-      content: "";
-      animation-duration: 46s;
-      opacity: 0.22;
-    }
-    .bg-stars::after {
-      content: "";
-      animation-duration: 60s;
-      opacity: 0.18;
-    }
-
-    @keyframes starDrift {
-      0% { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(-80px, -40px, 0); }
-    }
-
-    .bg-beams {
+    /* subtle floating glow behind whole site */
+    .bg-orbit {
       position: fixed;
       inset: -20%;
       background:
-        linear-gradient(120deg, rgba(255, 207, 153, 0.12), transparent 60%),
-        linear-gradient(310deg, rgba(121, 213, 255, 0.15), transparent 70%);
+        radial-gradient(circle at 20% 10%, rgba(255, 204, 153, 0.18), transparent),
+        radial-gradient(circle at 80% 80%, rgba(255, 111, 181, 0.1), transparent),
+        radial-gradient(circle at 10% 80%, rgba(102, 178, 255, 0.16), transparent);
       mix-blend-mode: screen;
-      opacity: 0.6;
       pointer-events: none;
       z-index: -2;
-      transform-origin: center;
-      animation: beamsRotate 22s ease-in-out infinite alternate;
+      animation: drift 18s ease-in-out infinite alternate;
     }
 
-    @keyframes beamsRotate {
-      0% { transform: rotate(0deg) scale(1); }
-      100% { transform: rotate(6deg) scale(1.08); }
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(-20px, 10px, 0) scale(1.05); }
     }
 
-    /* header – marquee style bar */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(16px);
-      background:
-        radial-gradient(circle at top, rgba(255, 207, 153, 0.2), transparent 65%),
-        rgba(5, 7, 20, 0.96);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      background: linear-gradient(
+        to right,
+        rgba(5, 8, 20, 0.96),
+        rgba(23, 38, 64, 0.96)
+      );
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .container {
-      max-width: 1160px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 1.4rem;
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.65rem 0;
+      padding: 0.75rem 0.1rem;
       gap: 1rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
     }
 
     .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background:
-        radial-gradient(circle at 20% 0, #ffffff, #ffe7c5 40%, #ff9966 75%, #d6249f 100%);
-      display: flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 210deg,
+        var(--accent-gold),
+        var(--accent-amber),
+        var(--accent-pink),
+        var(--accent-gold)
+      );
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #140812;
+      color: #050814;
+      font-size: 0.72rem;
       font-weight: 800;
-      font-size: 0.8rem;
-      box-shadow: 0 0 20px rgba(255, 207, 153, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.6), transparent 50%);
-      mix-blend-mode: screen;
-      opacity: 0.9;
-    }
-
-    .logo-text {
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-    }
-
-    .logo-sub {
-      display: block;
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.62;
+      box-shadow: 0 0 18px rgba(255, 204, 153, 0.7);
     }
 
     .main-nav {
       display: flex;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      padding: 0.22rem;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      padding: 0.2rem;
       border-radius: 999px;
-      background: radial-gradient(circle at top, rgba(121,213,255,0.18), transparent 55%), rgba(6,9,26,0.98);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(3, 7, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .main-nav a {
-      padding: 0.38rem 0.9rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 999px;
       color: #e1e9f5;
       position: relative;
@@ -201,9 +154,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top, rgba(255, 207, 153, 0.7), transparent 55%);
+      background: radial-gradient(
+        circle at top,
+        rgba(255, 207, 153, 0.5),
+        transparent 55%
+      );
       opacity: 0;
-      transition: opacity 0.24s ease;
+      transition: opacity 0.22s ease;
       pointer-events: none;
     }
 
@@ -214,22 +171,105 @@
     .main-nav a.active {
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
       color: #111218;
-      box-shadow: 0 0 16px rgba(255, 204, 153, 0.7);
+      box-shadow: 0 0 16px rgba(255, 204, 153, 0.6);
     }
 
     main {
       padding-bottom: 3.5rem;
     }
 
-    /* HERO */
+    /* full-width poster strip under header */
+    .poster-strip {
+      position: relative;
+      height: 220px;
+      background-image: url("images/arkansas-film-poster.jpg");
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+    }
+
+    .poster-strip-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.92));
+    }
+
+    .poster-strip-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      padding: 1.4rem 1.4rem 1.2rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    .poster-strip-inner h2 {
+      margin: 0.1rem 0 0.15rem;
+      font-size: 1.45rem;
+    }
+
+    .poster-strip-inner p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(226, 232, 255, 0.9);
+    }
+
+    .poster-strip-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(248, 250, 252, 0.75);
+    }
+
+    @keyframes marquee-slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* film marquee strip */
+    .marquee {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 0.98));
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      align-items: center;
+      animation: marquee-slide 22s linear infinite;
+    }
+
+    .marquee-inner span {
+      padding: 0.35rem 1.7rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(249, 250, 251, 0.8);
+    }
+
+    .marquee-inner span::before,
+    .marquee-inner span::after {
+      content: "✦";
+      display: inline-block;
+      margin: 0 0.6rem;
+      color: var(--accent-gold);
+    }
+
     .hero {
-      padding: 2.6rem 0 2rem;
+      padding: 2.4rem 0 1.8rem;
     }
 
     .hero-inner {
       display: grid;
-      gap: 2.3rem;
-      grid-template-columns: minmax(0, 3.1fr) minmax(0, 2.4fr);
+      gap: 2.2rem;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
       align-items: center;
     }
 
@@ -239,23 +279,26 @@
       letter-spacing: 0.22em;
       color: var(--accent-gold);
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     h1 {
-      margin: 0 0 0.7rem;
-      font-size: clamp(2.2rem, 2.8vw + 1rem, 2.8rem);
-      line-height: 1.05;
+      font-size: clamp(2.1rem, 2.5vw + 1rem, 2.6rem);
+      margin: 0 0 0.75rem;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff, #ffe0b8, #ffc0e1);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 24px rgba(0, 0, 0, 0.9);
     }
 
     h1 span.faded {
       display: block;
-      font-size: 0.92rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-top: 0.4rem;
-      opacity: 0.7;
+      font-weight: 500;
+      opacity: 0.85;
+      font-size: 0.9em;
+      color: #f3f4ff;
+      -webkit-text-fill-color: #f3f4ff;
     }
 
     p {
@@ -268,61 +311,64 @@
       font-size: 0.98rem;
     }
 
-    .hero-ribbon {
-      margin-top: 0.8rem;
+    .hero-highlight {
+      margin-top: 0.6rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.75rem;
+      gap: 0.45rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.8rem;
-      background: linear-gradient(120deg, rgba(255,207,153,0.12), rgba(121,213,255,0.15));
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+      font-size: 0.78rem;
+      color: var(--accent-gold);
+      background: radial-gradient(
+        circle at left,
+        rgba(255, 207, 153, 0.2),
+        transparent 70%
+      );
     }
 
-    .hero-ribbon-dot {
-      width: 9px;
-      height: 9px;
+    .hero-highlight-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: var(--accent-amber);
-      box-shadow: 0 0 12px rgba(255, 153, 102, 0.95);
-      animation: pulseDot 1.4s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulseDot {
-      0% { transform: scale(1); opacity: 0.9; }
-      100% { transform: scale(1.3); opacity: 1; }
+      box-shadow: 0 0 9px rgba(255, 153, 102, 0.9);
     }
 
     .btn-row {
       margin-top: 1.2rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
+      gap: 0.75rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.55rem 1.2rem;
+      padding: 0.55rem 1.1rem;
       border-radius: 999px;
       font-size: 0.9rem;
       border: 1px solid transparent;
       cursor: pointer;
       text-decoration: none;
       transition:
-        transform 0.16s ease,
-        box-shadow 0.16s ease,
-        background 0.16s ease,
-        border-color 0.16s ease,
-        opacity 0.16s ease;
+        transform 0.14s ease,
+        box-shadow 0.14s ease,
+        background 0.14s ease,
+        border-color 0.14s ease,
+        opacity 0.14s ease;
       font-weight: 500;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber), var(--accent-pink));
+      background: linear-gradient(
+        135deg,
+        var(--accent-gold),
+        var(--accent-amber),
+        var(--accent-pink)
+      );
       color: #111218;
       box-shadow: var(--shadow-strong);
     }
@@ -330,72 +376,59 @@
     .btn-outline {
       border-color: rgba(255, 255, 255, 0.4);
       color: var(--text-main);
-      background: rgba(6, 9, 26, 0.9);
-    }
-
-    .btn span.icon {
-      font-size: 1rem;
-      margin-right: 0.4rem;
+      background: rgba(3, 6, 18, 0.7);
     }
 
     .btn:hover {
       transform: translateY(-1.5px) scale(1.02);
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
       text-decoration: none;
-      opacity: 0.96;
+      opacity: 0.95;
     }
 
-    /* HERO MEDIA */
     .hero-media {
       display: flex;
       justify-content: center;
-      align-items: center;
       position: relative;
     }
 
     .hero-media-orbit {
       position: absolute;
-      inset: -20%;
+      inset: -18%;
       background:
-        radial-gradient(circle at 30% 0, rgba(255, 207, 153, 0.33), transparent 60%),
-        radial-gradient(circle at 80% 100%, rgba(255, 111, 181, 0.4), transparent 55%),
-        radial-gradient(circle at 10% 80%, rgba(121, 213, 255, 0.37), transparent 65%);
-      filter: blur(24px);
-      opacity: 0.8;
+        radial-gradient(circle at 30% 0, rgba(255, 207, 153, 0.3), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(255, 111, 181, 0.45), transparent 55%);
+      filter: blur(22px);
+      opacity: 0.65;
       z-index: -1;
-      animation: orbitGlow 16s ease-in-out infinite alternate;
+      animation: pulseGlow 14s ease-in-out infinite alternate;
     }
 
-    @keyframes orbitGlow {
-      0% { transform: translate3d(0,0,0) scale(1); }
-      100% { transform: translate3d(-8px, 4px, 0) scale(1.07); }
-    }
-
-    .hero-img-shell {
-      position: relative;
-      padding: 4px;
-      border-radius: 24px;
-      background:
-        conic-gradient(from 210deg, rgba(255,207,153,0.3), rgba(255,111,181,0.25), rgba(121,213,255,0.22), rgba(255,207,153,0.3));
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.08); opacity: 0.9; }
     }
 
     .hero-img-wrapper {
-      max-width: 390px;
+      max-width: 380px;
       width: 100%;
-      border-radius: 20px;
+      border-radius: 22px;
       overflow: hidden;
       background: radial-gradient(circle at top, #262b43, #050814);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: var(--shadow-strong);
       position: relative;
-      isolation: isolate;
     }
 
     .hero-img-wrapper::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(5, 8, 20, 0.8), transparent 45%);
+      background: linear-gradient(
+        to top,
+        rgba(5, 8, 20, 0.75),
+        transparent 45%
+      );
       pointer-events: none;
     }
 
@@ -403,7 +436,7 @@
       width: 100%;
       display: block;
       transform-origin: center;
-      transition: transform 0.5s ease;
+      transition: transform 0.45s ease;
     }
 
     .hero-img-wrapper:hover img {
@@ -412,42 +445,26 @@
 
     .hero-img-caption {
       position: absolute;
-      left: 1rem;
-      bottom: 0.85rem;
-      right: 1rem;
+      left: 0.9rem;
+      bottom: 0.8rem;
+      right: 0.9rem;
       font-size: 0.8rem;
-      padding: 0.45rem 0.7rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 12px;
-      background: rgba(2, 6, 23, 0.96);
+      background: rgba(3, 7, 18, 0.88);
       color: #dbe4f5;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-img-caption span {
-      display: block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      opacity: 0.8;
-      margin-top: 0.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px);
     }
 
     .section {
-      padding: 2.1rem 0 1.5rem;
+      padding: 2rem 0 1.4rem;
+      scroll-margin-top: 80px;
     }
 
     .section h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.55rem;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: rgba(226, 232, 255, 0.55);
-      margin-bottom: 0.1rem;
+      margin: 0 0 0.35rem;
+      font-size: 1.5rem;
     }
 
     .muted {
@@ -455,21 +472,33 @@
       font-size: 0.94rem;
     }
 
-    /* FILM GRID – filmstrip edge + glow */
+    .section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(226, 232, 255, 0.5);
+      margin-bottom: 0.2rem;
+    }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.35rem;
-      margin-top: 1.4rem;
+      gap: 1.3rem;
+      margin-top: 1.3rem;
     }
 
     .card {
       position: relative;
-      background: var(--card-bg);
+      background: radial-gradient(
+          circle at top,
+          rgba(255, 207, 153, 0.06),
+          transparent 55%
+        ),
+        var(--card-bg);
       border-radius: 16px;
-      padding: 1rem 1rem 1.05rem;
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.85);
+      padding: 1rem 1rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
       overflow: hidden;
       transition:
         transform 0.16s ease,
@@ -478,42 +507,50 @@
         background 0.16s ease;
     }
 
-    /* film holes */
-    .card::before,
-    .card::after {
+    .card::before {
       content: "";
       position: absolute;
-      top: 10px;
-      bottom: 10px;
-      width: 8px;
-      background-image:
-        radial-gradient(circle, rgba(15,23,42,1) 40%, transparent 42%);
-      background-size: 8px 20px;
-      opacity: 0.7;
+      inset: -40%;
+      background: conic-gradient(
+        from 180deg,
+        rgba(255, 204, 153, 0.0),
+        rgba(255, 204, 153, 0.46),
+        rgba(255, 111, 181, 0.0)
+      );
+      opacity: 0;
+      transform: rotate(0deg);
+      transition:
+        opacity 0.25s ease,
+        transform 0.6s ease;
       pointer-events: none;
     }
 
-    .card::before { left: 0; }
-    .card::after { right: 0; }
-
     .card:hover {
-      transform: translateY(-4px) scale(1.01);
-      border-color: rgba(255, 204, 153, 0.7);
-      background:
-        radial-gradient(circle at top, rgba(255,207,153,0.1), transparent 60%),
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(255, 204, 153, 0.65);
+      background: radial-gradient(
+          circle at top,
+          rgba(255, 207, 153, 0.12),
+          transparent 60%
+        ),
         var(--card-bg);
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.95);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: rotate(18deg);
     }
 
     .card h3 {
-      margin: 0.25rem 0 0.48rem;
+      margin: 0.2rem 0 0.45rem;
       font-size: 1.06rem;
     }
 
     .poster-img {
       width: 100%;
       border-radius: 12px;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
       max-height: 190px;
       object-fit: cover;
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -524,12 +561,12 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      padding: 0.2rem 0.6rem;
+      padding: 0.18rem 0.55rem;
       border-radius: 999px;
-      background: rgba(11, 17, 40, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.85);
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       color: var(--accent-gold);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
 
     .film-meta {
@@ -546,63 +583,29 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       margin-right: 0.3rem;
       margin-top: 0.18rem;
-      background: rgba(12, 19, 46, 0.96);
+      background: rgba(15, 23, 42, 0.9);
     }
 
-    /* ACTOR CONNECTION MAP */
     .two-column {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 1.7rem;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 1.6rem;
       align-items: flex-start;
-      margin-top: 1.5rem;
-      position: relative;
-    }
-
-    .connection-line {
-      position: absolute;
-      left: 0.6rem;
-      top: 0.2rem;
-      bottom: 0.2rem;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-pink));
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .actor-list {
-      list-style: none;
-      padding-left: 1.7rem;
-      margin: 0.7rem 0 0;
-    }
-
-    .actor-list li {
-      position: relative;
-      margin-bottom: 0.65rem;
-      padding-left: 0.2rem;
-    }
-
-    .actor-list li::before {
-      content: "";
-      position: absolute;
-      left: -1.15rem;
-      top: 0.45rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--accent-gold);
-      box-shadow: 0 0 10px rgba(255, 207, 153, 0.9);
+      margin-top: 1.4rem;
     }
 
     .note-box {
-      background:
-        radial-gradient(circle at top left, rgba(121,213,255,0.18), transparent 60%),
+      background: radial-gradient(
+          circle at top left,
+          rgba(255, 207, 153, 0.08),
+          transparent 60%
+        ),
         rgba(10, 16, 35, 0.98);
-      border-radius: 16px;
-      padding: 1rem 1.1rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 1rem 1.05rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 0.9rem;
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
     }
 
     .note-box h3 {
@@ -612,19 +615,43 @@
     }
 
     .about {
-      background:
-        radial-gradient(circle at top, rgba(255, 207, 153, 0.18), transparent 60%),
-        rgba(7, 12, 30, 0.96);
-      border-radius: 18px;
-      padding: 1.25rem 1.2rem 1.35rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      margin-top: 1.6rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      background: radial-gradient(
+          circle at top,
+          rgba(255, 207, 153, 0.12),
+          transparent 55%
+        ),
+        rgba(7, 12, 30, 0.95);
+      border-radius: 16px;
+      padding: 1.2rem 1.1rem 1.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 1.5rem;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.82);
+    }
+
+    /* about grid with poster */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .about-poster-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-poster-img {
+      max-width: 320px;
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.9);
     }
 
     .about h2 {
       margin-top: 0;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.4rem;
     }
 
     .about p {
@@ -632,26 +659,30 @@
     }
 
     .site-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       padding: 1.25rem 0 1.4rem;
       font-size: 0.8rem;
       color: #9fb1c8;
       text-align: center;
-      background: rgba(3, 6, 18, 0.96);
-      box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.8);
+      background: rgba(3, 7, 18, 0.94);
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 900px) {
       .hero-inner {
         grid-template-columns: 1fr;
       }
       .hero-media {
         order: -1;
-        margin-bottom: 0.6rem;
       }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
       .header-inner {
         flex-direction: column;
         align-items: flex-start;
@@ -660,39 +691,35 @@
         width: 100%;
         justify-content: space-between;
       }
-      .two-column {
-        grid-template-columns: 1fr;
-      }
-      .connection-line {
-        left: 0.4rem;
-      }
+    }
+
+    @media (max-width: 600px) {
+      .poster-strip { height: 190px; }
+      .poster-strip-inner { padding-inline: 1rem; }
     }
 
     @media (max-width: 540px) {
-      .container {
-        padding: 0 1.1rem;
-      }
       .hero {
-        padding-top: 2.2rem;
+        padding-top: 2rem;
+      }
+      .container {
+        padding: 0 1rem;
       }
       h1 {
-        font-size: 1.95rem;
+        font-size: 1.85rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="bg-stars"></div>
-  <div class="bg-beams"></div>
+  <!-- animated background glow -->
+  <div class="bg-orbit"></div>
 
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
-        <div class="logo-mark">AR</div>
-        <div>
-          <div class="logo-text">Arkansas Film Connections</div>
-          <span class="logo-sub">Capstone 2 · Shequila Sledge</span>
-        </div>
+        <span class="logo-mark">AR</span>
+        <span class="logo-text">Arkansas Film Connections</span>
       </div>
       <nav class="main-nav">
         <a href="#top" class="active">Home</a>
@@ -703,62 +730,98 @@
     </div>
   </header>
 
+  <!-- POSTER STRIP -->
+  <section class="poster-strip">
+    <div class="poster-strip-overlay"></div>
+    <div class="poster-strip-inner">
+      <span class="poster-strip-tag">Capstone 2 · Featured Project</span>
+      <h2>Arkansas Film &amp; Actor Connections</h2>
+      <p>A cinematic look at films and actors with Arkansas ties, designed and coded by Shequila Sledge.</p>
+    </div>
+  </section>
+
+  <!-- NOW SHOWING MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>Now Showing: Arkansas Film &amp; Actor Connections · Capstone 2</span>
+      <span>Designed &amp; Coded by Shequila Sledge</span>
+      <span>Arkansas Stories On Screen · My Creative Capstone</span>
+      <span>Now Showing: Arkansas Film &amp; Actor Connections · Capstone 2</span>
+    </div>
+  </div>
+
   <main id="top">
-    <!-- HERO -->
+    <!-- Hero / Intro -->
     <section class="hero">
       <div class="container hero-inner">
         <div>
           <p class="hero-tag">Capstone 2 · Web Project</p>
           <h1>
             Arkansas Film &amp; Actor Connections
-            <span class="faded">Stories on screen, roots in Arkansas</span>
+            <span class="faded">A digital spotlight by Shequila Sledge</span>
           </h1>
           <p class="hero-intro">
-            My name is <strong>Shequila Sledge</strong>, and this site is my Capstone 2 project.
-            I built it to trace how films and performers connect back to Arkansas through filming
-            locations, hometowns, and career ties. At the same time, it let me show what I can do
-            with planning, layout, and front-end design for the web.
+            This project explores how films and performers connect back to Arkansas through
+            filming locations, hometowns, and career ties. It also shows my process of planning,
+            designing, and building a small, focused website that I can host on GitHub and use
+            in my portfolio.
           </p>
-          <div class="hero-ribbon">
-            <span class="hero-ribbon-dot"></span>
-            <span>Part research, part movie night, part design experiment.</span>
+          <div class="hero-highlight">
+            <span class="hero-highlight-dot"></span>
+            <span>Arkansas stories on screen · my design behind the scenes</span>
           </div>
           <div class="btn-row">
-            <a href="#films" class="btn btn-primary">
-              <span class="icon">🎬</span>Browse Featured Films
-            </a>
-            <a href="#actors" class="btn btn-outline">
-              Explore Actor Connections
-            </a>
+            <a href="#films" class="btn btn-primary">Browse Featured Films</a>
+            <a href="#actors" class="btn btn-outline">Explore Actor Connections</a>
           </div>
         </div>
 
+        <!-- HERO IMAGE AREA USING THE POSTER -->
         <div class="hero-media">
           <div class="hero-media-orbit"></div>
-          <div class="hero-img-shell">
-            <div class="hero-img-wrapper">
-              <!-- put your own hero image URL or file here -->
-              <img src="HERO_IMAGE_URL_HERE"
-                   alt="Stylized collage of Arkansas film scenes, actors, and a glowing film reel" />
-              <div class="hero-img-caption">
-                Arkansas-connected films and actors pulled together on one site.
-                <span>Designed, written, and coded by me.</span>
-              </div>
+          <div class="hero-img-wrapper">
+            <img
+              src="images/arkansas-film-poster.jpg"
+              alt="Arkansas Film & Actor Connections movie-style poster"
+            />
+            <div class="hero-img-caption">
+              Custom artwork for my Capstone project, highlighting Arkansas film stories in one cinematic poster.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FILMS -->
+    <!-- Films Section -->
     <section class="section" id="films">
       <div class="container">
         <div class="section-label">Featured Films</div>
         <h2>Films with Arkansas Connections</h2>
         <p class="muted">
-          These titles all touch Arkansas in some way. Some were filmed here, some star Arkansas
-          natives, and some lean on Arkansas history and landscapes to tell their stories.
+          These eight titles are examples of films and series that connect to Arkansas in different ways:
+          they may have been filmed in Arkansas, feature Arkansas actors, or reference Arkansas history
+          and culture.
         </p>
+
+        <!-- Poster centered above film cards -->
+        <div style="
+          margin-top: 1rem;
+          margin-bottom: 0.8rem;
+          display: flex;
+          justify-content: center;
+        ">
+          <img
+            src="images/arkansas-film-poster.jpg"
+            alt="Arkansas Film & Actor Connections poster artwork"
+            style="
+              max-width: 420px;
+              width: 100%;
+              border-radius: 16px;
+              border: 1px solid rgba(255,255,255,0.15);
+              box-shadow: 0 18px 45px rgba(0,0,0,0.9);
+            "
+          />
+        </div>
 
         <div class="card-grid">
           <!-- Sling Blade -->
@@ -767,12 +830,12 @@
             <img class="poster-img" src="images/sling-blade.jpg" alt="Poster for Sling Blade" />
             <h3>Sling Blade (1996)</h3>
             <p class="muted">
-              Written, directed, and headlined by Billy Bob Thornton, this film follows Karl Childers
-              after his release from a psychiatric hospital as he tries to adjust to small-town life.
+              Written, directed, and headlined by Billy Bob Thornton, this film follows Karl Childers after
+              his release from a psychiatric hospital as he tries to adjust to small-town life.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Thornton is from Arkansas, and the film was shot
-              in the state. It also earned him an Academy Award.
+              <strong>Arkansas connection:</strong> Thornton is from Arkansas, and the film was shot in the state.
+              It also earned him an Academy Award.
             </p>
             <p class="film-meta">
               <span class="tag">Billy Bob Thornton</span>
@@ -786,12 +849,12 @@
             <img class="poster-img" src="images/mud.jpg" alt="Poster for Mud" />
             <h3>Mud (2012)</h3>
             <p class="muted">
-              Two boys growing up along the Mississippi River discover a fugitive named Mud hiding
-              on a river island. Helping him pulls them into his complicated past.
+              Two boys growing up along the Mississippi River discover a fugitive named Mud hiding on a river island.
+              As they help him, they are pulled into his complicated past.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Filmed in Arkansas and tied to actor Wes Bentley’s
-              career, this movie highlights Arkansas riverfront locations.
+              <strong>Arkansas connection:</strong> Filmed in Arkansas and tied to actor Wes Bentley’s career,
+              this movie brought more attention to Arkansas riverfront locations.
             </p>
             <p class="film-meta">
               <span class="tag">Wes Bentley</span>
@@ -805,12 +868,12 @@
             <img class="poster-img" src="images/chasing-amy.jpg" alt="Poster for Chasing Amy" />
             <h3>Chasing Amy (1997)</h3>
             <p class="muted">
-              A story about relationships, friendship, and identity in the comic-book world. Joey
-              Lauren Adams plays a lead role that helped define her career.
+              A story about relationships, friendship, and identity in the comic book industry. Joey Lauren Adams
+              plays a key lead role that helped shape her career.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Adams is an Arkansas native and was widely praised
-              for her performance in this film.
+              <strong>Arkansas connection:</strong> Adams is an Arkansas native and was widely praised for her
+              performance in this film.
             </p>
             <p class="film-meta">
               <span class="tag">Joey Lauren Adams</span>
@@ -824,12 +887,12 @@
             <img class="poster-img" src="images/melvin-and-howard.jpg" alt="Poster for Melvin and Howard" />
             <h3>Melvin and Howard (1980)</h3>
             <p class="muted">
-              Loosely based on a real-life encounter with billionaire Howard Hughes, this film follows
-              a working-class man whose life changes after an unexpected meeting.
+              Based loosely on a true story involving an unexpected connection to billionaire Howard Hughes, this film
+              focuses on a working-class man whose life changes after a strange encounter.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Mary Steenburgen, from Arkansas, won an Academy
-              Award for Best Supporting Actress for this role.
+              <strong>Arkansas connection:</strong> Mary Steenburgen, who is from Arkansas, won an Academy Award
+              for Best Supporting Actress for her role in this movie.
             </p>
             <p class="film-meta">
               <span class="tag">Mary Steenburgen</span>
@@ -843,12 +906,12 @@
             <img class="poster-img" src="images/buck-rogers.jpg" alt="Poster for Buck Rogers in the 25th Century" />
             <h3>Buck Rogers in the 25th Century (1979–1981)</h3>
             <p class="muted">
-              A classic science-fiction series that follows Buck Rogers after he wakes up 500 years in
-              the future and has to adjust to a completely new world.
+              A science fiction television series that followed the adventures of Buck Rogers after he wakes
+              up 500 years in the future.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Gil Gerard, the star of the series, is from
-              Little Rock, Arkansas, and became closely associated with this role.
+              <strong>Arkansas connection:</strong> Gil Gerard, the star of the series, is from Little Rock, Arkansas,
+              and became known for this role.
             </p>
             <p class="film-meta">
               <span class="tag">Gil Gerard</span>
@@ -862,12 +925,12 @@
             <img class="poster-img" src="images/the-firm.jpg" alt="Poster for The Firm" />
             <h3>The Firm (1993)</h3>
             <p class="muted">
-              A legal thriller based on John Grisham’s novel, following a young lawyer who slowly
-              discovers that his new law firm is hiding dangerous secrets.
+              A legal thriller based on the John Grisham novel, following a young lawyer who discovers that his new
+              law firm is hiding dangerous secrets.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> While much of the action is set in Memphis,
-              several scenes were filmed on the Arkansas side of the river.
+              <strong>Arkansas connection:</strong> Although much of the film is set in Memphis, several scenes were
+              filmed on the Arkansas side of the river, showcasing regional locations.
             </p>
             <p class="film-meta">
               <span class="tag">John Grisham Story</span>
@@ -881,12 +944,12 @@
             <img class="poster-img" src="images/walk-the-line.jpg" alt="Poster for Walk the Line" />
             <h3>Walk the Line (2005)</h3>
             <p class="muted">
-              A biopic about musician Johnny Cash, focusing on his early years, his rise to fame,
-              and his relationship with June Carter.
+              A biopic about the life of musician Johnny Cash, focusing on his early years, rise to fame, and
+              relationship with June Carter.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Cash was born in Arkansas, and parts of the film
-              were shot here to reflect his roots.
+              <strong>Arkansas connection:</strong> Cash was born in Arkansas, and parts of the movie were filmed in
+              Arkansas to reflect his roots.
             </p>
             <p class="film-meta">
               <span class="tag">Johnny Cash</span>
@@ -900,12 +963,12 @@
             <img class="poster-img" src="images/true-grit.jpg" alt="Poster for True Grit" />
             <h3>True Grit (2010)</h3>
             <p class="muted">
-              A modern take on the classic western about a young girl seeking justice for her
-              father’s death with the help of a U.S. Marshal.
+              A reimagining of the classic western about a young girl seeking justice for her father’s death with the
+              help of a U.S. Marshal.
             </p>
             <p class="film-meta">
-              <strong>Arkansas connection:</strong> Portions of the movie were filmed in Arkansas and
-              the story connects to regional frontier landscapes.
+              <strong>Arkansas connection:</strong> Portions of the film were shot in Arkansas and the story connects
+              to regional frontier history and landscapes.
             </p>
             <p class="film-meta">
               <span class="tag">Western</span>
@@ -916,61 +979,68 @@
       </div>
     </section>
 
-    <!-- ACTORS -->
+    <!-- Actors / Connections -->
     <section class="section" id="actors">
       <div class="container">
         <div class="section-label">Cast &amp; Creators</div>
         <div class="two-column">
-          <span class="connection-line"></span>
           <div>
             <h2>Actor &amp; Arkansas Connections</h2>
             <p class="muted">
-              Instead of just listing names, I treated this section like a connection map. Each
-              person links back to a project and a place, so you can see how much Arkansas quietly
-              shows up across different movies and shows.
+              Here are some of the key performers and figures tied to these films and to Arkansas.
+              Mapping these people helped me see how often Arkansas shows up on screen, even when the
+              story is set somewhere else.
             </p>
-            <ul class="actor-list muted">
+            <ul class="muted">
               <li><strong>Billy Bob Thornton</strong> – Arkansas native; wrote, directed, and starred in <em>Sling Blade</em>.</li>
               <li><strong>Wes Bentley</strong> – Born in Arkansas; appears in <em>Mud</em> and other major films.</li>
-              <li><strong>Joey Lauren Adams</strong> – Arkansas native; known for her lead role in <em>Chasing Amy</em>.</li>
+              <li><strong>Joey Lauren Adams</strong> – Arkansas native; praised for her leading role in <em>Chasing Amy</em>.</li>
               <li><strong>Mary Steenburgen</strong> – From Arkansas; won an Academy Award for <em>Melvin and Howard</em>.</li>
               <li><strong>Gil Gerard</strong> – Sci-fi actor from Little Rock; starred in <em>Buck Rogers in the 25th Century</em>.</li>
-              <li><strong>Johnny Cash</strong> – Born in Kingsland, Arkansas; his life story anchors <em>Walk the Line</em>.</li>
+              <li><strong>Johnny Cash</strong> – Born in Kingsland, Arkansas; his life story is central to <em>Walk the Line</em>.</li>
             </ul>
           </div>
           <aside class="note-box">
-            <h3>How I used this section</h3>
+            <h3>Director’s note</h3>
             <p>
-              I pulled actor information from public sources like the Encyclopedia of Arkansas and
-              IMDb, then rewrote it in my own words. The goal was to keep it short, but still show
-              why each person matters to the bigger picture of Arkansas in film and TV.
+              I treated this section like a connection map. Instead of just listing names, I made sure each
+              person is tied back to a specific project and place in Arkansas. It keeps the page readable but
+              still shows how wide the network of Arkansas talent really is.
             </p>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- About the Project -->
     <section class="section" id="about">
       <div class="container">
-        <div class="about">
-          <div class="section-label">Behind the Scenes</div>
-          <h2>About this project</h2>
-          <p class="muted">
-            I built this project over the course of a semester for my Capstone 2 class. I started
-            with a simple idea—highlight Arkansas films and actors—then broke it down into pages,
-            sections, and data that I could realistically finish.
-          </p>
-          <p class="muted">
-            Once I had the structure, I focused on the experience: making the site feel like a small
-            movie night on a single page. That meant gradients, motion, and “film strip” cards that
-            still keep the content readable and to the point.
-          </p>
-          <p class="muted">
-            I plan to host this on GitHub as part of my portfolio so I can show that I can research,
-            organize information, and design and code a complete front-end project on my own from
-            idea to final polish.
-          </p>
+        <div class="about about-grid">
+          <div>
+            <div class="section-label">Behind the Scenes</div>
+            <h2>About this project</h2>
+            <p class="muted">
+              This project was built over the course of a semester as part of my Capstone 2 class.
+              I started with a simple idea—shine a light on Arkansas films and actors—then broke it down
+              into pages, sections, and data I could actually manage.
+            </p>
+            <p class="muted">
+              From there, I focused on structure first and style second. Once the content was organized,
+              I layered on design choices like gradients, motion, and highlight cards so the site feels
+              like a small movie experience instead of just another list of links.
+            </p>
+            <p class="muted">
+              I prepared this page to be hosted on GitHub so I can point to it as proof that I can plan,
+              design, and ship a complete front-end project on my own—from idea, to layout, to final polish.
+            </p>
+          </div>
+          <div class="about-poster-wrap">
+            <img
+              src="images/arkansas-film-poster.jpg"
+              alt="Arkansas Film & Actor Connections poster artwork"
+              class="about-poster-img"
+            />
+          </div>
         </div>
       </div>
     </section>
